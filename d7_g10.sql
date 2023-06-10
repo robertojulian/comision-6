@@ -8,14 +8,15 @@ Leguizamon Rafael Marcelo
 Lucas Jorge
 Llanes Silvia
 Portillo Valentina
-Ramirez Nelida*/
+Ramirez Nelida
+Zalazar Bruno*/
 
 -- Creacion de la base de datos
 CREATE DATABASE blog;
 USE blog;
 -- Creacion de la tabla usuario
 CREATE TABLE usuario (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     apellido VARCHAR(20) NOT NULL,
     telefono VARCHAR(15),
@@ -30,13 +31,13 @@ CREATE TABLE usuario (
    );
 -- Creacion de la tabla articulo
 CREATE TABLE articulo (
-	id_articulo INT PRIMARY KEY AUTO_INCREMENT ,
+	id_articulo INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     titulo VARCHAR(50) NOT NULL,
     resumen VARCHAR(100) NOT NULL,
     contenido TEXT NOT NULL,
     fecha_publicacion DATE NOT NULL,
     estado BOOLEAN NOT NULL,
-    imagen BLOB,
+    imagen BLOB NULL,
     id_usuario INT NOT NULL,
     FOREIGN KEY(id_usuario) REFERENCES usuario(id)
     );
@@ -115,11 +116,13 @@ INSERT INTO comentario VALUES (1,'Cada año, la humanidad produce 400 millones d
 /* 6) Agregar el comando necesario para listar todos los artículos que tengan comentarios, mostrando el título del artículo, la fecha_publicacion del artículo, el
 nombre del usuario que realizo el comentario y la fecha_hora que realizó dicho comentario, agrupados por artículos. */
 
-SELECT a.titulo as Titulo, a.fecha_publicacion as Fecha_Publicacion, concat(u.apellido," ",u.nombre) as ApyNom, c.fecha_hora as Comentada
+SELECT a.titulo as Titulo, a.fecha_publicacion as Fecha_Publicacion, concat(u.apellido," ",u.nombre) as ApyNom, c.fecha_hora as Fecha_Comentario
 FROM articulo as a
 INNER JOIN comentario as c ON a.id_articulo = c.id_articulo
 INNER JOIN usuario as u ON u.id = c.id_usuario 
-ORDER by a.ID_ARTICULO;
+ORDER by c.id_articulo;
+
+
 
 
 
