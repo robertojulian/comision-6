@@ -9,7 +9,6 @@ Llanes Silvia
 Portillo Valentina
 Ramirez Nelida
 Zalazar Bruno'''
-
 import datetime
 import os
 
